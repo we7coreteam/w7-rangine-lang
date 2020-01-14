@@ -10,13 +10,11 @@
  * visited https://www.rangine.com for more details
  */
 
-use W7\Lang\Translator\Translator;
-
 if (!function_exists('itrans')) {
 	function itrans($id = null, $replace = [], $locale = null) {
 		if (is_null($id)) {
-			return iloader()->get(Translator::class);
+			return iloader()->get('lang.translator');
 		}
-		return iloader()->get(Translator::class)->trans($id, $replace, $locale);
+		return iloader()->get('lang.translator')->trans($id, $replace, $locale);
 	}
 }
