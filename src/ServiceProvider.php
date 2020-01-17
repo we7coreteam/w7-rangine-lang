@@ -74,6 +74,9 @@ class ServiceProvider extends ProviderAbstract {
 	}
 
 	public function registerViewFunction() {
+		if (!iloader()->has(View::class)) {
+			return false;
+		}
 		/**
 		 * @var View $view
 		 */

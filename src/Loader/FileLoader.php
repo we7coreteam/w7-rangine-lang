@@ -13,6 +13,7 @@
 namespace W7\Lang\Loader;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Str;
 use Illuminate\Translation\FileLoader as LaravelTranslationFileLoader;
 
 class FileLoader extends LaravelTranslationFileLoader {
@@ -63,7 +64,7 @@ class FileLoader extends LaravelTranslationFileLoader {
 			return [];
 		}
 		$result = parent::loadPath($path, $locale, $group);
-		if (empty($result) && str_contains($locale, '-')) {
+		if (empty($result) && Str::contains($locale, '-')) {
 			return parent::loadPath($path, strstr($locale, '-', true), $group);
 		}
 		return $result;

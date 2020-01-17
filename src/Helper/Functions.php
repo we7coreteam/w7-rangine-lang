@@ -11,6 +11,12 @@
  */
 
 if (!function_exists('itrans')) {
+	/**
+	 * @param null $id
+	 * @param array $replace
+	 * @param null $locale
+	 * @return mixed
+	 */
 	function itrans($id = null, $replace = [], $locale = null) {
 		if (is_null($id)) {
 			return iloader()->get('lang.translator');
