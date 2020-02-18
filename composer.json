@@ -9,6 +9,7 @@
 	"license": "Apache-2.0",
 	"require": {
 		"php": ">=7.2.0",
+		"caouecs/laravel-lang": "^4.0",
 		"illuminate/filesystem": "*"
 	},
 	"require-dev": {
