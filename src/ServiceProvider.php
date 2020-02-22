@@ -25,6 +25,7 @@ class ServiceProvider extends ProviderAbstract {
 	 * @return void
 	 */
 	public function register() {
+		$this->registerBaseDir();
 		$this->registerValidateLoader();
 		$this->registerValidateTranslator();
 
@@ -34,16 +35,27 @@ class ServiceProvider extends ProviderAbstract {
 		$this->registerViewFunction();
 	}
 
+	public function registerBaseDir() {
+		$config = $this->config->getUserConfig('app');
+		$config['setting']['basedir'] = $config['setting']['basedir'] ?? [];
+		$config['setting']['basedir'][] = BASE_PATH . '/lang';
+		$this->config->setUserConfig('app', $config);
+
+		if (!is_dir(BASE_PATH . '/lang/json')) {
+			mkdir(BASE_PATH . '/lang/json', 0777, true);
+		}
+	}
+
 	private function getLoader() {
 		$paths = [
-			BASE_PATH . '/vendor/caouecs/laravel-lang/src/',
-			BASE_PATH . '/lang/'
+			BASE_PATH . '/vendor/caouecs/laravel-lang/src',
+			BASE_PATH . '/lang'
 		];
 
 		$loader = new FileLoader(new Filesystem(), '', $paths);
 		if (\is_callable([$loader, 'addJsonPath'])) {
 			$loader->addJsonPath(BASE_PATH . '/vendor/caouecs/laravel-lang/json/');
-			$loader->addJsonPath(BASE_PATH . '/config/lang/json/');
+			$loader->addJsonPath(BASE_PATH . '/lang/json/');
 		}
 
 		return $loader;
