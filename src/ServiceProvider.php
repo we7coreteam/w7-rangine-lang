@@ -36,11 +36,7 @@ class ServiceProvider extends ProviderAbstract {
 	}
 
 	public function registerBaseDir() {
-		$config = $this->config->getUserConfig('app');
-		$config['setting']['basedir'] = $config['setting']['basedir'] ?? [];
-		$config['setting']['basedir'][] = BASE_PATH . '/lang';
-		$this->config->setUserConfig('app', $config);
-
+		$this->registerOpenBaseDir(BASE_PATH . '/lang');
 		if (!is_dir(BASE_PATH . '/lang/json')) {
 			mkdir(BASE_PATH . '/lang/json', 0777, true);
 		}
