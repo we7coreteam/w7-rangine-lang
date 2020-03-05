@@ -10,17 +10,23 @@
  * visited https://www.rangine.com for more details
  */
 
+if (!function_exists('itranslator')) {
+	/**
+	 * @return \W7\Lang\Translator\Translator
+	 */
+	function itranslator() : \W7\Lang\Translator\Translator {
+		return iloader()->get('lang.translator');
+	}
+}
+
 if (!function_exists('itrans')) {
 	/**
-	 * @param null $id
+	 * @param null $key
 	 * @param array $replace
 	 * @param null $locale
-	 * @return mixed
+	 * @return array|string
 	 */
-	function itrans($id = null, $replace = [], $locale = null) {
-		if (is_null($id)) {
-			return iloader()->get('lang.translator');
-		}
-		return iloader()->get('lang.translator')->trans($id, $replace, $locale);
+	function itrans($key = null, $replace = [], $locale = null) {
+		return itranslator()->trans($key, $replace, $locale);
 	}
 }
