@@ -12,9 +12,9 @@
 
 if (!function_exists('itranslator')) {
 	/**
-	 * @return \W7\Lang\Translator\Translator
+	 * @return \Illuminate\Translation\Translator
 	 */
-	function itranslator() : \W7\Lang\Translator\Translator {
+	function itranslator() :  \Illuminate\Translation\Translator {
 		return iloader()->get('lang.translator');
 	}
 }
