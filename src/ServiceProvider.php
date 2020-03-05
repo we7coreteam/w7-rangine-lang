@@ -89,6 +89,9 @@ class ServiceProvider extends ProviderAbstract {
 		 * @var View $view
 		 */
 		$view = iloader()->get(View::class);
+		$view->registerFunction('itranslator', function () {
+			return itranslator();
+		});
 		$view->registerFunction('itrans', function () {
 			return itrans(...func_get_args());
 		});
