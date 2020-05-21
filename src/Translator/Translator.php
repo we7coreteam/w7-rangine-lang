@@ -21,7 +21,6 @@ class Translator extends TranslatorAbstract {
 	}
 
 	public function getLocale() {
-		$config = iconfig()->getUserAppConfig('setting');
-		return $config['lang'] ?? 'zh-CN';
+		return iconfig()->get('app.setting.lang', 'zh-CN');
 	}
 }
