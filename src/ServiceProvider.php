@@ -58,37 +58,37 @@ class ServiceProvider extends ProviderAbstract {
 	}
 
 	public function registerValidateLoader() {
-		$this->getContainer()->set('validate.loader', function () {
+		$this->container->set('validate.loader', function () {
 			return $this->getLoader();
 		});
 	}
 
 	public function registerValidateTranslator() {
-		$this->getContainer()->set('validate.translator', function () {
-			return new Translator($this->getContainer()->get('validate.loader'));
+		$this->container->set('validate.translator', function () {
+			return new Translator($this->container->get('validate.loader'));
 		});
 	}
 
 	public function registerLangLoader() {
-		$this->getContainer()->set('lang.loader', function () {
+		$this->container->set('lang.loader', function () {
 			return $this->getLoader();
 		});
 	}
 
 	public function registerLangTranslator() {
-		$this->getContainer()->set('lang.translator', function () {
-			return new Translator($this->getContainer()->get('lang.loader'));
+		$this->container->set('lang.translator', function () {
+			return new Translator($this->container->get('lang.loader'));
 		});
 	}
 
 	public function registerViewFunction() {
-		if (!$this->getContainer()->has(View::class)) {
+		if (!$this->container->has(View::class)) {
 			return false;
 		}
 		/**
 		 * @var View $view
 		 */
-		$view = $this->getContainer()->get(View::class);
+		$view = $this->container->get(View::class);
 		$view->registerFunction('itranslator', function () {
 			return itranslator();
 		});
