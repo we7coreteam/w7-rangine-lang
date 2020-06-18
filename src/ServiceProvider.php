@@ -25,36 +25,15 @@ class ServiceProvider extends ProviderAbstract {
 	 * @return void
 	 */
 	public function register() {
-		$this->registerBaseDir();
-		$this->registerValidateLoader();
-		$this->registerValidateTranslator();
-
-		$this->registerLangLoader();
-		$this->registerLangTranslator();
-
-		$this->registerViewFunction();
-	}
-
-	public function registerBaseDir() {
-		$this->registerOpenBaseDir(BASE_PATH . '/lang');
 		if (!is_dir(BASE_PATH . '/lang/json')) {
 			mkdir(BASE_PATH . '/lang/json', 0777, true);
 		}
-	}
 
-	private function getLoader() {
-		$paths = [
-			BASE_PATH . '/vendor/caouecs/laravel-lang/src',
-			BASE_PATH . '/lang'
-		];
-
-		$loader = new FileLoader(new Filesystem(), '', $paths);
-		if (\is_callable([$loader, 'addJsonPath'])) {
-			$loader->addJsonPath(BASE_PATH . '/vendor/caouecs/laravel-lang/json/');
-			$loader->addJsonPath(BASE_PATH . '/lang/json/');
-		}
-
-		return $loader;
+		$this->registerValidateLoader();
+		$this->registerValidateTranslator();
+		$this->registerLangLoader();
+		$this->registerLangTranslator();
+		$this->registerViewFunction();
 	}
 
 	public function registerValidateLoader() {
@@ -82,9 +61,6 @@ class ServiceProvider extends ProviderAbstract {
 	}
 
 	public function registerViewFunction() {
-		if (!$this->container->has(View::class)) {
-			return false;
-		}
 		/**
 		 * @var View $view
 		 */
@@ -95,6 +71,21 @@ class ServiceProvider extends ProviderAbstract {
 		$view->registerFunction('itrans', function () {
 			return itrans(...func_get_args());
 		});
+	}
+
+	private function getLoader() {
+		$paths = [
+			BASE_PATH . '/vendor/caouecs/laravel-lang/src',
+			BASE_PATH . '/lang'
+		];
+
+		$loader = new FileLoader(new Filesystem(), '', $paths);
+		if (\is_callable([$loader, 'addJsonPath'])) {
+			$loader->addJsonPath(BASE_PATH . '/vendor/caouecs/laravel-lang/json/');
+			$loader->addJsonPath(BASE_PATH . '/lang/json/');
+		}
+
+		return $loader;
 	}
 
 	/**
