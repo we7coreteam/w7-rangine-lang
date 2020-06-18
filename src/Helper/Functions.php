@@ -15,7 +15,7 @@ if (!function_exists('itranslator')) {
 	 * @return \Illuminate\Translation\Translator
 	 */
 	function itranslator() :  \Illuminate\Translation\Translator {
-		return iloader()->get('lang.translator');
+		return \W7\Core\Facades\Container::get('translator');
 	}
 }
 

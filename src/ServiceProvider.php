@@ -29,33 +29,19 @@ class ServiceProvider extends ProviderAbstract {
 			mkdir(BASE_PATH . '/lang/json', 0777, true);
 		}
 
-		$this->registerValidateLoader();
-		$this->registerValidateTranslator();
-		$this->registerLangLoader();
-		$this->registerLangTranslator();
+		$this->registerLoader();
+		$this->registerTranslator();
 	}
 
-	public function registerValidateLoader() {
-		$this->container->set('validate.loader', function () {
+	public function registerLoader() {
+		$this->container->set('loader', function () {
 			return $this->getLoader();
 		});
 	}
 
-	public function registerValidateTranslator() {
-		$this->container->set('validate.translator', function () {
-			return new Translator($this->container->get('validate.loader'));
-		});
-	}
-
-	public function registerLangLoader() {
-		$this->container->set('lang.loader', function () {
-			return $this->getLoader();
-		});
-	}
-
-	public function registerLangTranslator() {
-		$this->container->set('lang.translator', function () {
-			return new Translator($this->container->get('lang.loader'));
+	public function registerTranslator() {
+		$this->container->set('translator', function () {
+			return new Translator($this->container->get('loader'));
 		});
 	}
 
