@@ -14,6 +14,7 @@ namespace W7\Lang\Translator;
 
 use Illuminate\Contracts\Translation\Loader;
 use Illuminate\Translation\Translator as TranslatorAbstract;
+use W7\Core\Facades\Config;
 
 class Translator extends TranslatorAbstract {
 	public function __construct(Loader $loader) {
@@ -21,6 +22,6 @@ class Translator extends TranslatorAbstract {
 	}
 
 	public function getLocale() {
-		return iconfig()->get('app.setting.lang', 'zh-CN');
+		return Config::get('app.setting.lang', 'zh-CN');
 	}
 }
