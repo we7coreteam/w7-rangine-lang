@@ -21,7 +21,7 @@ use W7\Core\Facades\FacadeAbstract;
  * @method static void setLocale(string $locale)
  * @method static string|array|null get(string $key, array $replace = [], string $locale = null, bool $fallback = true)
  *
- * @see \Illuminate\Translation\Translator
+ * @see \W7\Lang\Translator\Translator
  */
 class Translator extends FacadeAbstract {
 	protected static function getFacadeAccessor() {

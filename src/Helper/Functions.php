@@ -13,9 +13,9 @@
 if (!function_exists('itranslator')) {
 	/**
 	 * @deprecated
-	 * @return \Illuminate\Translation\Translator
+	 * @return \W7\Lang\Translator\Translator
 	 */
-	function itranslator() :  \Illuminate\Translation\Translator {
+	function itranslator() : \W7\Lang\Translator\Translator {
 		return \W7\Lang\Facades\Translator::getFacadeRoot();
 	}
 }
