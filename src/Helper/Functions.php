@@ -12,15 +12,17 @@
 
 if (!function_exists('itranslator')) {
 	/**
+	 * @deprecated
 	 * @return \Illuminate\Translation\Translator
 	 */
 	function itranslator() :  \Illuminate\Translation\Translator {
-		return \W7\Core\Facades\Container::get('translator');
+		return \W7\Lang\Facades\Translator::getFacadeRoot();
 	}
 }
 
 if (!function_exists('itrans')) {
 	/**
+	 * @deprecated
 	 * @param null $key
 	 * @param array $replace
 	 * @param null $locale
