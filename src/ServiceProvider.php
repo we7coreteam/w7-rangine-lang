@@ -71,10 +71,10 @@ class ServiceProvider extends ProviderAbstract {
 		 */
 		$view = $this->container->get(View::class);
 		$view->registerFunction('itranslator', function () {
-			return itranslator();
+			return \W7\Lang\Facades\Translator::getFacadeRoot();
 		});
 		$view->registerFunction('itrans', function () {
-			return itrans(...func_get_args());
+			return \W7\Lang\Facades\Translator::trans(...func_get_args());
 		});
 	}
 }
