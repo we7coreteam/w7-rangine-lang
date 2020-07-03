@@ -77,4 +77,8 @@ class ServiceProvider extends ProviderAbstract {
 			return \W7\Lang\Facades\Translator::trans(...func_get_args());
 		});
 	}
+
+	public function providers(): array {
+		return ['translator', 'loader'];
+	}
 }
