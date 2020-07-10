@@ -29,6 +29,6 @@ if (!function_exists('itrans')) {
 	 * @return array|string
 	 */
 	function itrans($key = null, $replace = [], $locale = null) {
-		return itranslator()->trans($key, $replace, $locale);
+		return \W7\Lang\Facades\Translator::trans($key, $replace, $locale);
 	}
 }
