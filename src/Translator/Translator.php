@@ -24,4 +24,8 @@ class Translator extends TranslatorAbstract {
 	public function getLocale() {
 		return Config::get('app.setting.lang', 'zh-CN');
 	}
+
+	public function trans($key, array $replace = [], $locale = null) {
+		return $this->get($key, $replace, $locale);
+	}
 }
