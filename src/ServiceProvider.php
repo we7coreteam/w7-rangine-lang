@@ -43,7 +43,7 @@ class ServiceProvider extends ProviderAbstract {
 
 	public function registerTranslator() {
 		$this->container->set(TranslatorInterface::class, function () {
-			return new Translator($this->container->singleton(LoaderInterface::class));
+			return new Translator($this->container->singleton(LoaderInterface::class), $this->config);
 		});
 	}
 
@@ -73,10 +73,10 @@ class ServiceProvider extends ProviderAbstract {
 		 */
 		$view = $this->container->singleton(ViewInterface::class);
 		$view->registerFunction('itranslator', function () {
-			return \W7\Lang\Facades\Translator::getFacadeRoot();
+			return $this->container->singleton(TranslatorInterface::class);
 		});
 		$view->registerFunction('itrans', function () {
-			return \W7\Lang\Facades\Translator::trans(...func_get_args());
+			return $this->container->singleton(TranslatorInterface::class)->trans(...func_get_args());
 		});
 	}
 
