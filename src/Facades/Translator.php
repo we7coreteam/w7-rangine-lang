@@ -12,19 +12,10 @@
 
 namespace W7\Lang\Facades;
 
-use W7\Core\Facades\FacadeAbstract;
-
 /**
- * @method static mixed trans(string $key, array $replace = [], string $locale = null)
- * @method static string transChoice(string $key, int|array|\Countable $number, array $replace = [], string $locale = null)
- * @method static string getLocale()
- * @method static void setLocale(string $locale)
- * @method static string|array|null get(string $key, array $replace = [], string $locale = null, bool $fallback = true)
- *
- * @see \W7\Lang\Translator\Translator
+ * @deprecated
+ * Class Translator
+ * @package W7\Lang\Facades
  */
-class Translator extends FacadeAbstract {
-	protected static function getFacadeAccessor() {
-		return 'translator';
-	}
+class Translator extends \W7\Facade\Translator {
 }

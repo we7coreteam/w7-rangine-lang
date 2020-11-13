@@ -12,12 +12,13 @@
 
 namespace W7\Lang\Translator;
 
-use Illuminate\Contracts\Translation\Loader;
 use Illuminate\Translation\Translator as TranslatorAbstract;
+use W7\Contract\Translation\LoaderInterface;
+use W7\Contract\Translation\TranslatorInterface;
 use W7\Core\Facades\Config;
 
-class Translator extends TranslatorAbstract {
-	public function __construct(Loader $loader) {
+class Translator extends TranslatorAbstract implements TranslatorInterface {
+	public function __construct(LoaderInterface $loader) {
 		parent::__construct($loader, $this->getLocale());
 	}
 

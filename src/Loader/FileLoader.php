@@ -15,8 +15,9 @@ namespace W7\Lang\Loader;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Illuminate\Translation\FileLoader as LaravelTranslationFileLoader;
+use W7\Contract\Translation\LoaderInterface;
 
-class FileLoader extends LaravelTranslationFileLoader {
+class FileLoader extends LaravelTranslationFileLoader implements LoaderInterface {
 	/**
 	 * @var array
 	 */

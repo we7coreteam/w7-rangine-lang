@@ -9,13 +9,20 @@
 	"license": "Apache-2.0",
 	"require": {
 		"php": ">=7.2.0",
+		"w7/rangine-contract": "dev-master",
 		"caouecs/laravel-lang": "^4.0",
 		"illuminate/filesystem": "*"
 	},
 	"require-dev": {
 		"w7/rangine": "~2.0",
-		"w7/php-cs-fixer": "^1.0"
+		"w7/php-cs-fixer": "*"
 	},
+	"repositories": [
+		{
+			"type": "path",
+			"url": "../w7-rangine-contract"
+		}
+	],
 	"autoload": {
 		"psr-4": {
 			"W7\\Lang\\": "src/"

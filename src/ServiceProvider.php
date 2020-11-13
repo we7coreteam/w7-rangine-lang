@@ -13,8 +13,10 @@
 namespace W7\Lang;
 
 use Illuminate\Filesystem\Filesystem;
+use W7\Contract\Translation\LoaderInterface;
+use W7\Contract\Translation\TranslatorInterface;
+use W7\Contract\View\ViewInterface;
 use W7\Core\Provider\ProviderAbstract;
-use W7\Core\View\View;
 use W7\Lang\Loader\FileLoader;
 use W7\Lang\Translator\Translator;
 
@@ -34,14 +36,14 @@ class ServiceProvider extends ProviderAbstract {
 	}
 
 	public function registerLoader() {
-		$this->container->set('loader', function () {
+		$this->container->set(LoaderInterface::class, function () {
 			return $this->getLoader();
 		});
 	}
 
 	public function registerTranslator() {
-		$this->container->set('translator', function () {
-			return new Translator($this->container->get('loader'));
+		$this->container->set(TranslatorInterface::class, function () {
+			return new Translator($this->container->singleton(LoaderInterface::class));
 		});
 	}
 
@@ -67,9 +69,9 @@ class ServiceProvider extends ProviderAbstract {
 	 */
 	public function boot() {
 		/**
-		 * @var View $view
+		 * @var ViewInterface $view
 		 */
-		$view = $this->container->get(View::class);
+		$view = $this->container->singleton(ViewInterface::class);
 		$view->registerFunction('itranslator', function () {
 			return \W7\Lang\Facades\Translator::getFacadeRoot();
 		});
@@ -79,6 +81,6 @@ class ServiceProvider extends ProviderAbstract {
 	}
 
 	public function providers(): array {
-		return ['translator', 'loader'];
+		return [TranslatorInterface::class, LoaderInterface::class];
 	}
 }
