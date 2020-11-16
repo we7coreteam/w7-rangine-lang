@@ -21,15 +21,15 @@ class Translator extends TranslatorAbstract implements TranslatorInterface {
 	/**
 	 * @var RepositoryInterface
 	 */
-	protected $repository;
+	protected $configRepository;
 
 	public function __construct(LoaderInterface $loader, RepositoryInterface $repository) {
 		parent::__construct($loader, $this->getLocale());
-		$this->repository = $repository;
+		$this->configRepository = $repository;
 	}
 
 	public function getLocale() {
-		return $this->repository->get('app.setting.lang', 'zh-CN');
+		return $this->configRepository->get('app.setting.lang', 'zh-CN');
 	}
 
 	public function trans($key, array $replace = [], $locale = null) {
