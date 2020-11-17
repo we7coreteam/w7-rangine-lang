@@ -15,7 +15,6 @@ namespace W7\Lang;
 use Illuminate\Filesystem\Filesystem;
 use W7\Contract\Translation\LoaderInterface;
 use W7\Contract\Translation\TranslatorInterface;
-use W7\Contract\View\ViewInterface;
 use W7\Core\Provider\ProviderAbstract;
 use W7\Lang\Loader\FileLoader;
 use W7\Lang\Translator\Translator;
@@ -60,24 +59,6 @@ class ServiceProvider extends ProviderAbstract {
 		}
 
 		return $loader;
-	}
-
-	/**
-	 * Bootstrap any application services.
-	 *
-	 * @return void
-	 */
-	public function boot() {
-		/**
-		 * @var ViewInterface $view
-		 */
-		$view = $this->container->singleton(ViewInterface::class);
-		$view->registerFunction('itranslator', function () {
-			return $this->container->singleton(TranslatorInterface::class);
-		});
-		$view->registerFunction('itrans', function () {
-			return $this->container->singleton(TranslatorInterface::class)->trans(...func_get_args());
-		});
 	}
 
 	public function providers(): array {
