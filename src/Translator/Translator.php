@@ -24,8 +24,8 @@ class Translator extends TranslatorAbstract implements TranslatorInterface {
 	protected $configRepository;
 
 	public function __construct(LoaderInterface $loader, RepositoryInterface $repository) {
-		parent::__construct($loader, $this->getLocale());
 		$this->configRepository = $repository;
+		parent::__construct($loader, $this->getLocale());
 	}
 
 	public function getLocale() {
