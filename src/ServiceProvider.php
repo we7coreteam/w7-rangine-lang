@@ -36,7 +36,18 @@ class ServiceProvider extends ProviderAbstract {
 
 	public function registerLoader() {
 		$this->container->set(LoaderInterface::class, function () {
-			return $this->getLoader();
+			$paths = [
+				BASE_PATH . '/vendor/caouecs/laravel-lang/src',
+				BASE_PATH . '/lang'
+			];
+
+			$loader = new FileLoader(new Filesystem(), '', $paths);
+			if (\is_callable([$loader, 'addJsonPath'])) {
+				$loader->addJsonPath(BASE_PATH . '/vendor/caouecs/laravel-lang/json/');
+				$loader->addJsonPath(BASE_PATH . '/lang/json/');
+			}
+
+			return $loader;
 		});
 	}
 
@@ -44,21 +55,6 @@ class ServiceProvider extends ProviderAbstract {
 		$this->container->set(TranslatorInterface::class, function () {
 			return new Translator($this->container->singleton(LoaderInterface::class), $this->config);
 		});
-	}
-
-	private function getLoader() {
-		$paths = [
-			BASE_PATH . '/vendor/caouecs/laravel-lang/src',
-			BASE_PATH . '/lang'
-		];
-
-		$loader = new FileLoader(new Filesystem(), '', $paths);
-		if (\is_callable([$loader, 'addJsonPath'])) {
-			$loader->addJsonPath(BASE_PATH . '/vendor/caouecs/laravel-lang/json/');
-			$loader->addJsonPath(BASE_PATH . '/lang/json/');
-		}
-
-		return $loader;
 	}
 
 	public function providers(): array {
