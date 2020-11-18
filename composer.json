@@ -21,10 +21,7 @@
 	"autoload": {
 		"psr-4": {
 			"W7\\Lang\\": "src/"
-		},
-		"files": [
-			"src/Helper/Functions.php"
-		]
+		}
 	},
 	"extra": {
 		"rangine": {
