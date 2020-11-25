@@ -45,9 +45,12 @@ class FileLoader extends LaravelTranslationFileLoader implements LoaderInterface
 	 */
 	public function load($locale, $group, $namespace = null) {
 		$defaults = [];
-		foreach ($this->paths as $path) {
-			$defaults = array_replace_recursive($defaults, $this->loadPath($path, $locale, $group));
+		if ($group !== '*') {
+			foreach ($this->paths as $path) {
+				$defaults = array_replace_recursive($defaults, $this->loadPath($path, $locale, $group));
+			}
 		}
+
 		return array_replace_recursive($defaults, parent::load($locale, $group, $namespace));
 	}
 

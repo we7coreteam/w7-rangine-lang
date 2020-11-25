@@ -41,7 +41,7 @@ class ServiceProvider extends ProviderAbstract {
 				BASE_PATH . '/lang'
 			];
 
-			$loader = new FileLoader(new Filesystem(), '', $paths);
+			$loader = new FileLoader(new Filesystem(), BASE_PATH, $paths);
 			if (\is_callable([$loader, 'addJsonPath'])) {
 				$loader->addJsonPath(BASE_PATH . '/vendor/caouecs/laravel-lang/json/');
 				$loader->addJsonPath(BASE_PATH . '/lang/json/');
