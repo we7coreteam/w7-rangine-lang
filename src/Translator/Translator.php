@@ -29,6 +29,6 @@ class Translator extends TranslatorAbstract implements TranslatorInterface {
 	}
 
 	public function getLocale() {
-		return $this->configRepository->get('app.setting.lang', 'zh-CN');
+		return $this->configRepository->get('app.setting.lang', 'zh_CN');
 	}
 }
