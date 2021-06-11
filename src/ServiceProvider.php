@@ -53,7 +53,7 @@ class ServiceProvider extends ProviderAbstract {
 
 	public function registerTranslator() {
 		$this->container->set(TranslatorInterface::class, function () {
-			return new Translator($this->container->singleton(LoaderInterface::class), $this->config);
+			return new Translator($this->container->get(LoaderInterface::class), $this->config);
 		});
 	}
 
