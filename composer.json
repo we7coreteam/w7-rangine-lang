@@ -10,7 +10,7 @@
 	"license": "Apache-2.0",
 	"require": {
 		"php": ">=7.2.0",
-		"w7/rangine": "*",
+		"w7/rangine": "~3.0.0",
 		"w7/rangine-contract": "*",
 		"laravel-lang/lang": "^4.0|^6.0|^7.0",
 		"illuminate/filesystem": "*"
