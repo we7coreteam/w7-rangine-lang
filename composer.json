@@ -12,7 +12,7 @@
 		"php": ">=7.2.0",
 		"w7/rangine": "*",
 		"w7/rangine-contract": "*",
-		"laravel-lang/lang": "^4.0|^6.0|^7.0|^12.0",
+		"laravel-lang/lang": "^10.0",
 		"illuminate/filesystem": "*"
 	},
 	"require-dev": {
