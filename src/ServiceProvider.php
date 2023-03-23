@@ -37,7 +37,7 @@ class ServiceProvider extends ProviderAbstract {
 	public function registerLoader() {
 		$this->container->set(LoaderInterface::class, function () {
 			$paths = [
-				BASE_PATH . '/vendor/laravel-lang/lang/src',
+				BASE_PATH . '/vendor/laravel-lang/lang/locales',
 				BASE_PATH . '/lang'
 			];
 
